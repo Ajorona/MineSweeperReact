@@ -53,7 +53,7 @@ class MineSweeper extends Component {
             // Determine what has been clicked
             this.setState({ board: GameLogic.clickTile(this.state.board, tileID)});
         } else if (e.type === "contextmenu") {
-            this.setState({ board: GameLogic.handleFlag(this.state.board, tileID)});
+            this.setState({ board: GameLogic.flagTile(this.state.board, tileID)});
         }
     }
 
@@ -114,7 +114,6 @@ class MineSweeper extends Component {
                                                            row={this.state.row} col={this.state.col} /> : ''}
                     </div>
                     <div className="card-text">
-                        "Hello"
                     </div>
                 </div>
             </Aux>

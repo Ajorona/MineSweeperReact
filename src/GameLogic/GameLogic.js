@@ -12,7 +12,9 @@ export const GameLogic = {
     },
 
     flagTile: function (board, tileID) {
-        board[tileID].flagged = true;
+        if (!board[tileID].visible) {
+            board[tileID].flagged = true;
+        }
         return board;
     },
 

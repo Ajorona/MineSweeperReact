@@ -13,10 +13,14 @@ const Tile = (props) => {
 	let visible = props.tile.visible;
 	let displayChar = '?';
 
-	if (visible && !props.tile.mine) {
-		displayChar = props.tile.neighbors;
-	} else if (visible && props.tile.mine) {
-		displayChar = '*';
+	if (props.tile.flagged) {
+		displayChar = 'F'
+	} else {
+		if (visible && !props.tile.mine) {
+			displayChar = props.tile.neighbors;
+		} else if (visible && props.tile.mine) {
+			displayChar = '*';
+		}		
 	}
 
 	return (<td className={classes.Tile}>

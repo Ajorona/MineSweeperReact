@@ -22,6 +22,10 @@ class MineSweeper extends Component {
             mines: 0,
             board: null,
             initialized: false,
+
+            timerActive: false,
+            time: 0,
+            start: 0
         }
     }
 
@@ -54,6 +58,20 @@ class MineSweeper extends Component {
             this.setState({ board: GameLogic.clickTile(this.state.board, tileID)});
         } else if (e.type === "contextmenu") {
             this.setState({ board: GameLogic.flagTile(this.state.board, tileID)});
+        }
+    }
+
+    startTimer = () => {
+        if (!this.state.timerActive) {
+            this.setState({
+                timerActive: true,
+                time: this.state.time,
+                start: Date.now()
+            })
+
+            this.timer = setInterval(() => this.setState({
+                time: Math.floor((Date.now() - this.state.start)/1000)
+            }), 1)    
         }
     }
 
@@ -114,13 +132,12 @@ class MineSweeper extends Component {
                         </div>
                         <hr className="mx-auto m-0" style={{maxWidth: '500px'}}/>
                         <div className="row justify-content-center">
-                            <h4>ScoreBoard
-                            </h4>
+                            <h5>time: <span class="badge badge-secondary">{this.state.time}</span></h5>
                         </div>
                     </div>
 
                     <div className="card" style={{border: 'none'}}>
-                        <div className="card-body mx-auto">
+                        <div className="card-body mx-auto" onClick={this.startTimer}>
                             {(this.state.initialized) && <Board board={this.state.board}
                                                                tileClickHandler={this.tileClickHandler}
                                                                row={this.state.row} col={this.state.col} /> }

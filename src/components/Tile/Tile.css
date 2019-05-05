@@ -1,0 +1,17 @@
+
+.Tile {
+    height: 24px;
+    width: 24px;
+    background-color: #C0C0C0;
+    border: 4px solid black;
+}
+
+.clickedTile {
+    height: 24px;
+    width: 24px;
+    background-color: #808080;
+
+    border: 0;
+    box-shadow: none;
+    border: 4px solid black;
+}

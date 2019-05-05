@@ -13,14 +13,14 @@ const Board = (props) => {
 		for (let i=0; i < props.row; i++) {
 			let rowHeader = props.row * i;
 			rows.push(
-				<tr>
+				<tr className={classes.Row}>
 					{tiles.slice(rowHeader, rowHeader+props.col)}
 				</tr>
 			);
 		}
 
 		return (
-			<table>
+			<table className={classes.Grid}>
 				<tbody>
 					{rows}
 				</tbody>

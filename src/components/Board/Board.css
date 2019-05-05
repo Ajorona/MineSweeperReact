@@ -1,0 +1,12 @@
+.Grid {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	border-collapse: separate;
+	border-spacing: 1px;
+}
+
+
+.Row {
+	
+}

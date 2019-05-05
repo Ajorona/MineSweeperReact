@@ -107,13 +107,24 @@ class MineSweeper extends Component {
                     </Modal>
                 </div>
 
-                <div className="card">
-                    <div className="card-body">
-                        {(this.state.initialized) ? <Board board={this.state.board}
-                                                           tileClickHandler={this.tileClickHandler}
-                                                           row={this.state.row} col={this.state.col} /> : ''}
+                <div className="container">
+                    <div>
+                        <div className="row justify-content-center mt-2 mb-0">
+                            <h1 className="blog-header-logo text-dark text-center font-weight-bold">MineSweeper</h1>
+                        </div>
+                        <hr className="mx-auto m-0" style={{maxWidth: '500px'}}/>
+                        <div className="row justify-content-center">
+                            <h4>ScoreBoard
+                            </h4>
+                        </div>
                     </div>
-                    <div className="card-text">
+
+                    <div className="card" style={{border: 'none'}}>
+                        <div className="card-body mx-auto">
+                            {(this.state.initialized) && <Board board={this.state.board}
+                                                               tileClickHandler={this.tileClickHandler}
+                                                               row={this.state.row} col={this.state.col} /> }
+                        </div>
                     </div>
                 </div>
             </Aux>

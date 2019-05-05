@@ -129,7 +129,7 @@ class MineSweeper extends Component {
                 <div className="container">
                     <div>
                         <div className="row justify-content-center mt-2 mb-0">
-                            <h1 className="blog-header-logo text-dark text-center font-weight-bold">MineSweeper</h1>
+                            <h1 className="blog-header-logo text-dark text-center font-weigth-bold">MineSweeper</h1>
                         </div>
                         <hr className="mx-auto m-0" style={{maxWidth: '500px'}}/>
                         <div className="row justify-content-center">

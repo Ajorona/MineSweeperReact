@@ -3,13 +3,38 @@
 export const GameLogic = {
 
     clickTile: function (board, tileID) {
-        if (board[tileID].mine) {
-            board = this.revealAll(board, tileID);
+        // 1: Perform click
+        board[tileID].visible = true;
+        // 2: Determine new board state and mutate board
+        let gameState = this.getGameState(board);
+        if (gameState === -1) {
+            this.revealAll(board, tileID);
         } else {
             this.clearOrCascade(board, tileID);
         }
-        return board;
+
+        // 3: Return new board and current game state
+        return {board: board, gameState: gameState};
     },
+
+    getGameState : function (board) {
+        // return 1 if won, 0 if undecided, -1 if lost
+        let gameState = 1;
+        for (let i=0; i < board.length; i++) {
+            let mine = board[i].mine;
+            let visible = board[i].visible;
+            if (mine && visible) {
+                gameState = -1;
+                return gameState;
+            }
+
+            if (!(mine || visible)) {
+                gameState = 0;
+            }
+        }
+        return gameState;
+    },
+
 
     flagTile: function (board, tileID) {
         if (!board[tileID].visible) {
@@ -19,11 +44,10 @@ export const GameLogic = {
     },
 
     revealAll: function (board, tileID) {
-        board = board.map((tile) => {
+        board.forEach((tile) => {
+            console.log("Reveal All")
             tile.visible = true;
-            return tile;
         })
-        return board;
     },
 
     initBoard : function (col, row, mines) {

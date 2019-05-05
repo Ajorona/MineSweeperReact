@@ -4,12 +4,6 @@ import classes from './Tile.css';
 import flag from '../../assets/images/flag.svg';
 import mine from '../../assets/images/mine.svg';
 
-const tileSym= {
-	blank     : '?',
-	mine      : '*',
-	uncovered : '-',
-	flagged   : 'F'
-}
 
 const Tile = (props) => {
 	let tile = props.tile;
@@ -32,13 +26,14 @@ const Tile = (props) => {
 
 	if (display === '*' || display === 'F') {
 		tileElem =  <input id={props.tile.key}
-						   className={classes.Image}
+						   className={tile.flagged ? classes.Flag : classes.Mine}
 				           onClick={(e) => props.tileClickHandler(e, props.tile.key)}
 				           onContextMenu={(e) => props.tileClickHandler(e, props.tile.key)}
-				           type="image" src={tile.flagged ? flag : mine}
+				           type='button' value=' '
 				    />
 	} else {
 		tileElem =  <input id={props.tile.key}
+						   className={classes.Input}
 				           onClick={(e) => props.tileClickHandler(e, props.tile.key)}
 				           onContextMenu={(e) => props.tileClickHandler(e, props.tile.key)}
 				           type='button' value={display}

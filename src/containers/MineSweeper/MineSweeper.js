@@ -22,6 +22,7 @@ class MineSweeper extends Component {
             mines: 0,
             board: null,
             initialized: false,
+            gameState: 0,
 
             timerActive: false,
             time: 0,
@@ -54,8 +55,8 @@ class MineSweeper extends Component {
         e.preventDefault();
 
         if (e.type === "click") {
-            // Determine what has been clicked
-            this.setState({ board: GameLogic.clickTile(this.state.board, tileID)});
+            let boardAndState = GameLogic.clickTile(this.state.board, tileID);
+            this.setState({board: boardAndState.board, gameState: boardAndState.gameState});
         } else if (e.type === "contextmenu") {
             this.setState({ board: GameLogic.flagTile(this.state.board, tileID)});
         }
@@ -132,7 +133,7 @@ class MineSweeper extends Component {
                         </div>
                         <hr className="mx-auto m-0" style={{maxWidth: '500px'}}/>
                         <div className="row justify-content-center">
-                            <h5>time: <span class="badge badge-secondary">{this.state.time}</span></h5>
+                            <h6>time: <span class="badge badge-secondary">{this.state.time}</span></h6>
                         </div>
                     </div>
 

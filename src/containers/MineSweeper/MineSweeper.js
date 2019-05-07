@@ -60,6 +60,10 @@ class MineSweeper extends Component {
         } else if (e.type === "contextmenu") {
             this.setState({ board: GameLogic.flagTile(this.state.board, tileID)});
         }
+
+        if (this.state.gameState === -1) {
+            this.setState({timerActive: false});
+        }
     }
 
     startTimer = () => {
@@ -74,6 +78,14 @@ class MineSweeper extends Component {
                 time: Math.floor((Date.now() - this.state.start)/1000)
             }), 1)    
         }
+    }
+
+    stopTimer = () => {
+        clearInterval(this.timer);
+    }
+
+    resetTimer = () => {
+        this.setState({time: 0, timerActive: false});
     }
 
     handleSubmit = (event) => {
@@ -91,6 +103,12 @@ class MineSweeper extends Component {
 
     backdropHandler = () => {
         this.setState({modalOpen: false });
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        if (nextState.gameState === -1) {
+            this.stopTimer();
+        }
     }
 
     render() {

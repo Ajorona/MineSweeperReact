@@ -111,6 +111,24 @@ class MineSweeper extends Component {
         }
     }
 
+    resetGame = () => {
+        this.setState({
+            showModal: false,
+            gameActive: false,
+            col: 0,
+            row: 0,
+            mines: 0,
+            board: null,
+            initialized: false,
+            gameState: 0,
+
+            timerActive: false,
+            time: 0,
+            start: 0
+        })
+
+    }
+
     render() {
         let backdrop;
         let modalChild;
@@ -150,8 +168,16 @@ class MineSweeper extends Component {
                             <h1 className="blog-header-logo text-dark text-center font-weigth-bold">MineSweeper</h1>
                         </div>
                         <hr className="mx-auto m-0" style={{maxWidth: '500px'}}/>
-                        <div className="row justify-content-center">
-                            <h6>time: <span class="badge badge-secondary">{this.state.time}</span></h6>
+
+                        <div className={`row justify-content-center ${classes.Bar}`}>
+
+                            <div className={classes.TimeBox}>
+                                <h6 className={classes.TimeLabel}>timer</h6>
+                                <span className={classes.Timer}>{this.state.time}</span>
+                            </div>
+                        
+                        
+                            <button className={classes.ResetBtn} onClick={this.resetGame}>reset</button>
                         </div>
                     </div>
 
